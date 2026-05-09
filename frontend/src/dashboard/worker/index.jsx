@@ -1,0 +1,1 @@
+const workerDashboard = () => { return <div>worker Dashboard</div>; }; export default workerDashboard;
