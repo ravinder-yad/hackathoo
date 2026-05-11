@@ -1,72 +1,131 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 
 const Footer = () => {
   return (
-    <footer className="bg-white border-t border-gray-100 pt-20 pb-10">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+    <footer className="bg-gray-50 pt-24 pb-12 border-t border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           
-          {/* Brand */}
-          <div className="space-y-6">
-            <h2 className="text-2xl font-black text-purple-600">WorkConnect</h2>
-            <p className="text-gray-500 font-medium leading-relaxed">
-              Connecting you with trusted local professionals for all your home and business needs. Reliable, fast, and safe.
-            </p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-purple-600 hover:text-white transition-all"><FacebookIcon fontSize="small" /></a>
-              <a href="#" className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-purple-600 hover:text-white transition-all"><TwitterIcon fontSize="small" /></a>
-              <a href="#" className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-purple-600 hover:text-white transition-all"><InstagramIcon fontSize="small" /></a>
-              <a href="#" className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-purple-600 hover:text-white transition-all"><LinkedInIcon fontSize="small" /></a>
-            </div>
+          {/* 1. Brand Section */}
+          <div className="space-y-8">
+             <Link to="/">
+                <h2 className="text-3xl font-black text-purple-600 tracking-tighter">WorkConnect</h2>
+             </Link>
+             <p className="text-gray-500 font-bold leading-relaxed text-sm">
+                Connecting you with trusted local experts instantly. Fast, reliable, and premium service delivery for the modern home.
+             </p>
+             <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-gray-400 hover:text-purple-600 hover:shadow-md transition-all cursor-pointer">
+                   <InstagramIcon fontSize="small" />
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-gray-400 hover:text-purple-600 hover:shadow-md transition-all cursor-pointer">
+                   <TwitterIcon fontSize="small" />
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-gray-400 hover:text-purple-600 hover:shadow-md transition-all cursor-pointer">
+                   <LinkedInIcon fontSize="small" />
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-gray-400 hover:text-purple-600 hover:shadow-md transition-all cursor-pointer">
+                   <GitHubIcon fontSize="small" />
+                </div>
+             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* 2. Quick Links */}
           <div>
-            <h3 className="text-gray-900 font-black mb-6 uppercase tracking-widest text-xs">Platform</h3>
-            <ul className="space-y-4">
-              <li><Link to="/services" className="text-gray-500 hover:text-purple-600 font-bold transition-colors">Find Services</Link></li>
-              <li><Link to="/emergency" className="text-gray-500 hover:text-red-500 font-bold transition-colors">Emergency Help</Link></li>
-              <li><Link to="/register?role=worker" className="text-gray-500 hover:text-purple-600 font-bold transition-colors">Become a Worker</Link></li>
-              <li><Link to="/how-it-works" className="text-gray-500 hover:text-purple-600 font-bold transition-colors">How it Works</Link></li>
-            </ul>
+             <h4 className="text-gray-900 font-black text-xs uppercase tracking-widest mb-8">Navigation</h4>
+             <ul className="space-y-4">
+                {['Home', 'Services', 'Emergency', 'My Bookings', 'Profile'].map((link) => (
+                  <li key={link}>
+                    <Link 
+                      to={link === 'Home' ? '/' : `/${link.toLowerCase().replace(' ', '')}`}
+                      className="text-gray-400 hover:text-purple-600 font-bold text-sm transition-colors"
+                    >
+                      {link}
+                    </Link>
+                  </li>
+                ))}
+             </ul>
           </div>
 
-          {/* Company */}
+          {/* 3. Services */}
           <div>
-            <h3 className="text-gray-900 font-black mb-6 uppercase tracking-widest text-xs">Company</h3>
-            <ul className="space-y-4">
-              <li><Link to="/about" className="text-gray-500 hover:text-purple-600 font-bold transition-colors">About Us</Link></li>
-              <li><Link to="/contact" className="text-gray-500 hover:text-purple-600 font-bold transition-colors">Contact</Link></li>
-              <li><Link to="/privacy" className="text-gray-500 hover:text-purple-600 font-bold transition-colors">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="text-gray-500 hover:text-purple-600 font-bold transition-colors">Terms & Conditions</Link></li>
-            </ul>
+             <h4 className="text-gray-900 font-black text-xs uppercase tracking-widest mb-8">Services</h4>
+             <ul className="space-y-4">
+                {['Electrician', 'Plumber', 'AC Repair', 'Cleaning', 'Carpenter'].map((link) => (
+                  <li key={link}>
+                    <Link to="/services" className="text-gray-400 hover:text-purple-600 font-bold text-sm transition-colors">
+                      {link}
+                    </Link>
+                  </li>
+                ))}
+             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* 4. Support */}
           <div>
-            <h3 className="text-gray-900 font-black mb-6 uppercase tracking-widest text-xs">Contact Us</h3>
-            <p className="text-gray-500 font-bold mb-4">support@workconnect.com</p>
-            <p className="text-gray-500 font-bold">+1 (555) 123-4567</p>
-            <div className="mt-6 p-4 bg-purple-50 rounded-2xl border border-purple-100">
-              <p className="text-purple-600 text-xs font-black uppercase">Service Hours</p>
-              <p className="text-purple-900 font-bold text-sm">24/7 Support Available</p>
-            </div>
+             <h4 className="text-gray-900 font-black text-xs uppercase tracking-widest mb-8">Support & Legal</h4>
+             <ul className="space-y-4">
+                {['Help Center', 'FAQs', 'Contact Us', 'Privacy Policy', 'Terms of Service'].map((link) => (
+                  <li key={link}>
+                    <a href="#" className="text-gray-400 hover:text-purple-600 font-bold text-sm transition-colors">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+             </ul>
+             <div className="mt-10 p-4 bg-white rounded-2xl border border-gray-100 flex items-center gap-3">
+                <div className="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-500">
+                   <VerifiedUserIcon sx={{ fontSize: 16 }} />
+                </div>
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">ISO 27001 Certified Platform</p>
+             </div>
           </div>
 
         </div>
 
-        <div className="pt-10 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 font-bold text-sm">© 2026 WorkConnect. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-             <Link to="/privacy" className="text-gray-400 hover:text-gray-600 text-xs font-bold transition-colors">Privacy Policy</Link>
-             <Link to="/terms" className="text-gray-400 hover:text-gray-600 text-xs font-bold transition-colors">Terms of Service</Link>
-          </div>
+        {/* Contact Info Bar */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10 border-y border-gray-100">
+           <div className="flex items-center gap-6">
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-purple-600 shadow-sm">
+                 <EmailIcon />
+              </div>
+              <div>
+                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Email Assistance</p>
+                 <p className="text-lg font-black text-gray-900">support@workconnect.com</p>
+              </div>
+           </div>
+           <div className="flex items-center gap-6">
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-emerald-600 shadow-sm">
+                 <PhoneIcon />
+              </div>
+              <div>
+                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Call our Experts</p>
+                 <p className="text-lg font-black text-gray-900">+91 1800 234 5678</p>
+              </div>
+           </div>
         </div>
+
+        {/* Bottom Credits */}
+        <div className="pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+           <p className="text-gray-400 font-bold text-xs uppercase tracking-widest">
+              © 2026 WorkConnect Marketplace. All Rights Reserved.
+           </p>
+           <div className="flex items-center gap-8">
+              <p className="text-gray-300 font-black text-[10px] uppercase tracking-[0.2em]">Designed with ❤️ in India</p>
+              <div className="h-4 w-[1px] bg-gray-100 hidden md:block"></div>
+              <p className="text-gray-300 font-black text-[10px] uppercase tracking-[0.2em]">Version 2.4.0</p>
+           </div>
+        </div>
+
       </div>
     </footer>
   );

@@ -36,7 +36,7 @@ const Booking = () => {
     try {
       const response = await axios.post('http://localhost:8000/bookings/', {
         user_email: user.email,
-        worker_id: worker.id,
+        worker_email: worker.email,
         worker_name: worker.name,
         service: worker.skills?.[0] || 'General Service',
         date,

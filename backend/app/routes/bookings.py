@@ -5,6 +5,8 @@ from pydantic import BaseModel
 from typing import Optional
 from bson import ObjectId
 
+import random
+
 router = APIRouter()
 
 class BookingCreate(BaseModel):
@@ -25,6 +27,7 @@ async def create_booking(data: BookingCreate):
     
     booking_dict = data.dict()
     booking_dict["status"] = "pending"
+    booking_dict["otp"] = str(random.randint(1000, 9999))
     booking_dict["created_at"] = datetime.utcnow().isoformat()
     
     result = await db.bookings.insert_one(booking_dict)
@@ -61,5 +64,15 @@ async def update_booking_status(booking_id: str, status: str = Body(...)):
             {"$set": {"status": status}}
         )
         return {"message": f"Status updated to {status}"}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Invalid booking ID")
+@router.delete("/{booking_id}")
+async def cancel_booking(booking_id: str):
+    db = get_db()
+    try:
+        result = await db.bookings.delete_one({"_id": ObjectId(booking_id)})
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Booking not found")
+        return {"message": "Booking cancelled successfully! 🔴"}
     except Exception as e:
         raise HTTPException(status_code=400, detail="Invalid booking ID")

@@ -25,12 +25,27 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
    const [isOnline, setIsOnline] = useState(true);
+   const [notifications, setNotifications] = useState([]);
  
    useEffect(() => {
-     if (isAuthenticated && user?.role === 'worker') {
-       fetchWorkerStatus();
+     if (isAuthenticated) {
+       fetchNotifications();
+       const interval = setInterval(fetchNotifications, 15000);
+       if (user?.role === 'worker') {
+         fetchWorkerStatus();
+       }
+       return () => clearInterval(interval);
      }
    }, [isAuthenticated, user]);
+
+   const fetchNotifications = async () => {
+     try {
+       const response = await axios.get(`http://localhost:8000/notifications/${user.email}`);
+       setNotifications(response.data);
+     } catch (error) {
+       console.error("Failed to fetch notifications");
+     }
+   };
  
    const fetchWorkerStatus = async () => {
      try {
@@ -165,12 +180,17 @@ const Navbar = () => {
           ) : (
             <div className="flex items-center gap-4">
               {/* Notification Bell */}
-              <button className="text-gray-400 hover:text-purple-600 relative transition-colors w-10 h-10 flex items-center justify-center rounded-xl hover:bg-purple-50 group">
+              <Link 
+                to="/notifications"
+                className="text-gray-400 hover:text-purple-600 relative transition-colors w-10 h-10 flex items-center justify-center rounded-xl hover:bg-purple-50 group"
+              >
                 <NotificationsNoneIcon className="group-hover:scale-110 transition-transform" />
-                <span className="absolute top-2 right-2 w-4 h-4 bg-red-500 text-white text-[10px] font-black flex items-center justify-center rounded-full border-2 border-white">
-                  2
-                </span>
-              </button>
+                {notifications.filter(n => !n.read).length > 0 && (
+                  <span className="absolute top-2 right-2 w-4 h-4 bg-red-500 text-white text-[10px] font-black flex items-center justify-center rounded-full border-2 border-white animate-pulse">
+                    {notifications.filter(n => !n.read).length}
+                  </span>
+                )}
+              </Link>
 
               {/* Profile Dropdown */}
               <div className="relative group">
@@ -225,7 +245,7 @@ const Navbar = () => {
                      </Link>
                    )}
 
-                   <Link to="/settings" className="flex items-center gap-3 px-6 py-3 hover:bg-purple-50 text-gray-700 hover:text-purple-600 transition-colors group/item">
+                   <Link to={user?.role === 'worker' ? "/settings" : "/settings/user"} className="flex items-center gap-3 px-6 py-3 hover:bg-purple-50 text-gray-700 hover:text-purple-600 transition-colors group/item">
                       <SettingsOutlinedIcon className="text-gray-400 group-hover/item:text-purple-600" fontSize="small" />
                       <span className="text-sm font-bold">Settings</span>
                    </Link>

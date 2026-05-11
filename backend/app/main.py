@@ -5,6 +5,7 @@ from app.routes.workers import router as workers_router
 from app.routes.bookings import router as bookings_router
 from app.routes.review import router as reviews_router
 from app.routes.worker import router as worker_router
+from app.routes.notifications import router as notifications_router
 from app.database import connect_to_mongo, close_mongo_connection
 from fastapi.staticfiles import StaticFiles
 import os
@@ -44,6 +45,7 @@ app.include_router(workers_router, prefix="/workers", tags=["Workers"])
 app.include_router(bookings_router, prefix="/bookings", tags=["Bookings"])
 app.include_router(reviews_router, prefix="/reviews", tags=["Reviews"])
 app.include_router(worker_router, prefix="/worker", tags=["Worker Dashboard"])
+app.include_router(notifications_router, prefix="/notifications", tags=["Notifications"])
 
 @app.get("/")
 def home():

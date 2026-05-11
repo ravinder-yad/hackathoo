@@ -15,6 +15,8 @@ const WorkerDashboard = lazy(() => import('../pages/Worker/WorkerDashboard'));
 const WorkerJobs = lazy(() => import('../pages/Worker/WorkerJobs'));
 const WorkerEarnings = lazy(() => import('../pages/Worker/WorkerEarnings'));
 const WorkerSettings = lazy(() => import('../pages/Worker/WorkerSettings'));
+const UserSettings = lazy(() => import('../pages/UserSettings'));
+const Notifications = lazy(() => import('../pages/Notifications'));
 const MyBookings = lazy(() => import('../pages/MyBookings'));
 
 const AppRoutes = () => {
@@ -31,6 +33,8 @@ const AppRoutes = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/bookings" element={<MyBookings />} />
+          <Route path="/settings/user" element={<UserSettings />} />
+          <Route path="/notifications" element={<Notifications />} />
           
           {/* Worker Routes */}
           <Route path="/dashboard/worker" element={<WorkerDashboard />} />
