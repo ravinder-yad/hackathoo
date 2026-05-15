@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import logo from "../../assets/logo.png"
@@ -18,7 +18,6 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import axios from 'axios';
-import logoImage from '../../assets/hire-again.png';
 import { toast } from 'react-hot-toast';
 
 const Navbar = () => {
@@ -26,67 +25,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-<<<<<<< HEAD
-   const [isOnline, setIsOnline] = useState(true);
-   const [notifications, setNotifications] = useState([]);
-   const [isAccountOpen, setIsAccountOpen] = useState(false);
-   const accountRef = useRef(null);
- 
-   useEffect(() => {
-     if (isAuthenticated) {
-       fetchNotifications();
-       const interval = setInterval(fetchNotifications, 15000);
-       if (user?.role === 'worker') {
-         fetchWorkerStatus();
-       }
-       return () => clearInterval(interval);
-     }
-   }, [isAuthenticated, user]);
-
-   const fetchNotifications = async () => {
-     try {
-       const response = await axios.get(`http://localhost:8000/notifications/${user.email}`);
-       setNotifications(response.data);
-     } catch (error) {
-       console.error("Failed to fetch notifications");
-     }
-   };
- 
-   const fetchWorkerStatus = async () => {
-     try {
-       const response = await axios.get(`http://localhost:8000/worker/stats/${user.email}`);
-       setIsOnline(response.data.is_online);
-     } catch (error) {
-       console.error("Error fetching worker status:", error);
-     }
-   };
- 
-   const handleToggleStatus = async () => {
-     const newStatus = !isOnline;
-     try {
-       await axios.post('http://localhost:8000/worker/status', {
-         email: user.email,
-         is_online: newStatus
-       });
-       setIsOnline(newStatus);
-       toast.success(newStatus ? "Online! ðŸŸ¢" : "Offline ðŸ”´");
-     } catch (error) {
-       toast.error("Failed to update status");
-     }
-   };
- 
-   const handleLogout = () => {
-     logout();
-     navigate('/login');
-     setIsMobileMenuOpen(false);
-   };
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (accountRef.current && !accountRef.current.contains(event.target)) {
-        setIsAccountOpen(false);
-      }
-    };
-=======
   const [isOnline, setIsOnline] = useState(true);
   const [notifications, setNotifications] = useState([]);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -139,21 +77,8 @@ const Navbar = () => {
     navigate('/login');
     setIsMobileMenuOpen(false);
   };
->>>>>>> 0fadc461a9703a04f9fc75e942304aeb09ce96c8
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
   return (
-<<<<<<< HEAD
-    <nav className="fixed top-0 w-full bg-white shadow-md border-b z-[1000] px-4 md:px-8 py-2 md:py-3">
-      <div className="max-w-[1536px] mx-auto flex items-center justify-between gap-4 min-h-[64px]">
-        
-        {/* 1. Logo Section (Left) */}
-        <div className="flex items-center gap-4 shrink-0">
-          <Link to="/" className="shrink-0">
-            <img src={logoImage} alt="HireAgain logo" className="w-24 h-24 md:w-28 md:h-28 object-contain rounded-2xl" />
-=======
     <nav className="fixed top-0 w-full bg-white shadow-sm border-b z-[1000] px-4 md:px-8 h-24 flex items-center">
       <div className="max-w-[1536px] mx-auto flex items-center justify-between gap-4 w-full">
 
@@ -165,7 +90,6 @@ const Navbar = () => {
               alt="WorkConnect Logo"
               className="h-20 w-60 object-contain"
             />
->>>>>>> 0fadc461a9703a04f9fc75e942304aeb09ce96c8
           </Link>
         </div>
 
@@ -208,7 +132,7 @@ const Navbar = () => {
               </div>
 
               <Link to="/emergency" className="bg-red-500 text-white px-5 py-2.5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg shadow-red-500/25 flex items-center gap-1">
-                Emergency ðŸš¨
+                Emergency 🚨
               </Link>
 
               {isAuthenticated ? (
@@ -272,23 +196,12 @@ const Navbar = () => {
               </Link>
 
               {/* Profile Dropdown */}
-<<<<<<< HEAD
-              <div className="relative" ref={accountRef}>
-                <button
-                  type="button"
-                  onClick={() => setIsAccountOpen((prev) => !prev)}
-                  className="flex items-center gap-2 p-1 pl-3 pr-2 border border-gray-100 rounded-2xl cursor-pointer hover:border-purple-600 hover:bg-gray-50 transition-all"
-                  aria-expanded={isAccountOpen}
-                >
-                  <div className="hidden lg:flex flex-col items-end">
-=======
               <div className="relative">
                 <div 
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                   className={`flex items-center gap-2 p-1 pl-3 pr-2 border rounded-2xl cursor-pointer transition-all ${isProfileOpen ? 'border-purple-600 bg-purple-50' : 'border-gray-100 hover:border-purple-600 hover:bg-gray-50'}`}
                 >
                   <div className="flex flex-col items-end hidden lg:flex">
->>>>>>> 0fadc461a9703a04f9fc75e942304aeb09ce96c8
                     <span className="text-xs font-black text-gray-900 leading-none mb-0.5">{user?.name || 'User'}</span>
                     <span className="text-[10px] font-bold text-gray-400 capitalize tracking-wider leading-none">{user?.role}</span>
                   </div>
@@ -299,22 +212,6 @@ const Navbar = () => {
                       <span className="font-black text-lg">{user?.name?.[0] || 'U'}</span>
                     )}
                   </div>
-<<<<<<< HEAD
-                  <KeyboardArrowDownIcon
-                    className={`text-gray-400 transition-transform ${isAccountOpen ? 'rotate-180 text-purple-600' : ''}`}
-                    fontSize="small"
-                  />
-                </button>
-
-                {/* Dropdown Menu */}
-                <div className={`absolute right-0 top-full mt-3 w-64 bg-white shadow-[0_25px_60px_rgba(0,0,0,0.15)] rounded-[2rem] border border-gray-50 py-4 z-50 overflow-hidden transform-gpu ${isAccountOpen ? 'block' : 'hidden'} animate-in fade-in slide-in-from-top-4 duration-300`}>
-                   {/* Dropdown Header */}
-                   <div className="px-6 py-4 bg-gray-50/50 mb-2">
-                      <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-1">Account</p>
-                      <p className="text-sm font-black text-gray-900 truncate">{user?.name || 'User Account'}</p>
-                      <p className="text-[11px] font-bold text-gray-500 truncate">{user?.email || 'ravi@example.com'}</p>
-                   </div>
-=======
                   <KeyboardArrowDownIcon 
                     className={`text-gray-400 transition-transform duration-300 ${isProfileOpen ? 'rotate-180 text-purple-600' : ''}`} 
                     fontSize="small" 
@@ -336,7 +233,6 @@ const Navbar = () => {
                         <p className="text-sm font-black text-gray-900 truncate">{user?.name || 'User Account'}</p>
                         <p className="text-[11px] font-bold text-gray-500 truncate">{user?.email || 'ravi@example.com'}</p>
                       </div>
->>>>>>> 0fadc461a9703a04f9fc75e942304aeb09ce96c8
 
                       <Link 
                         to="/profile" 
@@ -406,26 +302,6 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white border-t mt-4 overflow-hidden pt-4 pb-8 flex flex-col gap-2 px-2"
           >
-<<<<<<< HEAD
-             <Link to="/services" className="text-gray-900 font-bold px-4 py-3 hover:bg-gray-50 rounded-xl">All Services</Link>
-             <Link to="/emergency" className="text-red-500 font-black px-4 py-3 hover:bg-red-50 rounded-xl">Emergency ðŸš¨</Link>
-             <hr className="my-2 border-gray-50" />
-             {!isAuthenticated ? (
-               <>
-                 <Link to="/register?role=worker" className="text-gray-900 font-bold px-4 py-3 hover:bg-gray-50 rounded-xl">Become a Worker</Link>
-                 <div className="grid grid-cols-2 gap-4 px-4 mt-4">
-                    <Link to="/login" className="px-6 py-3.5 border border-gray-200 text-center font-bold rounded-2xl">Login</Link>
-                    <Link to="/register" className="px-6 py-3.5 bg-purple-600 text-white text-center font-bold rounded-2xl shadow-lg shadow-purple-600/20">Sign Up</Link>
-                 </div>
-               </>
-             ) : (
-               <>
-                  <Link to="/booking" className="text-gray-900 font-bold px-4 py-3 hover:bg-gray-50 rounded-xl">My Bookings</Link>
-                  <Link to="/profile" className="text-gray-900 font-bold px-4 py-3 hover:bg-gray-50 rounded-xl">My Profile</Link>
-                  <button onClick={handleLogout} className="text-left text-red-500 font-black px-4 py-3 hover:bg-red-50 rounded-xl mt-2">Logout</button>
-               </>
-             )}
-=======
             <Link to="/services" className="text-gray-900 font-bold px-4 py-3 hover:bg-gray-50 rounded-xl">All Services</Link>
             <Link to="/emergency" className="text-red-500 font-black px-4 py-3 hover:bg-red-50 rounded-xl">Emergency 🚨</Link>
             <hr className="my-2 border-gray-50" />
@@ -444,7 +320,6 @@ const Navbar = () => {
                 <button onClick={handleLogout} className="text-left text-red-500 font-black px-4 py-3 hover:bg-red-50 rounded-xl mt-2">Logout</button>
               </>
             )}
->>>>>>> 0fadc461a9703a04f9fc75e942304aeb09ce96c8
           </motion.div>
         )}
       </AnimatePresence>
@@ -453,9 +328,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 0fadc461a9703a04f9fc75e942304aeb09ce96c8
