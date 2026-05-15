@@ -155,9 +155,14 @@ const Register = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 pt-32 pb-20">
       <div className="max-w-xl w-full">
         {/* Brand Logo */}
+<<<<<<< HEAD
         <Link to="/" className="flex items-center justify-center gap-2 mb-10">
           <div className="w-10 h-10 bg-purple-600 rounded-xl shadow-lg shadow-purple-500/20"></div>
           <h1 className="text-3xl font-black text-gray-900 tracking-tighter">HireAgain</h1>
+=======
+        <Link to="/" className="flex items-center justify-center mb-10">
+          <img src="/logo.png" alt="HireAgain" className="h-16 w-auto object-contain" />
+>>>>>>> 0fadc461a9703a04f9fc75e942304aeb09ce96c8
         </Link>
 
         {/* Form Sections */}

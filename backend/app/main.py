@@ -20,7 +20,7 @@ async def lifespan(app: FastAPI):
     await close_mongo_connection()
 
 app = FastAPI(
-    title="WorkConnect API",
+    title="HireAgain API",
     version="1.0.0",
     lifespan=lifespan
 )
@@ -28,7 +28,12 @@ app = FastAPI(
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5174",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -51,7 +56,7 @@ app.include_router(notifications_router, prefix="/notifications", tags=["Notific
 def home():
     return {
         "status": "online",
-        "message": "WorkConnect Backend is running",
+        "message": "HireAgain Backend is running",
         "version": "1.0.0"
     }
 
