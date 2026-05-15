@@ -22,7 +22,7 @@ const MyBookings = lazy(() => import('../pages/MyBookings'));
 const AppRoutes = () => {
   return (
     <MainLayout>
-      <Suspense fallback={<div className="pt-32 text-center font-black animate-pulse text-purple-600">Loading WorkConnect...</div>}>
+      <Suspense fallback={<div className="pt-32 text-center font-black animate-pulse text-purple-600">Loading HireAgain...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />

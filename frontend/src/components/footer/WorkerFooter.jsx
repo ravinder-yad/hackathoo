@@ -9,6 +9,7 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import StarIcon from '@mui/icons-material/Star';
 import CircleIcon from '@mui/icons-material/Circle';
 import EngineeringIcon from '@mui/icons-material/Engineering';
+import logo from "../../assets/logo.png"
 
 const WorkerFooter = () => {
   const { user } = useAuth();
@@ -37,14 +38,11 @@ const WorkerFooter = () => {
           
           {/* 1. Worker Identity */}
           <div className="space-y-6">
-             <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg">
-                   <EngineeringIcon />
-                </div>
-                <h2 className="text-2xl font-black text-gray-900 tracking-tighter">Worker Hub</h2>
-             </div>
+             <Link to="/" className="inline-block">
+                <img src={logo} alt="WorkConnect Logo" className="h-16 w-auto object-contain" />
+             </Link>
              <p className="text-gray-400 font-bold text-sm leading-relaxed">
-                Empowering India's skilled professionals. Manage your service requests, track your daily earnings, and maintain your expert profile.
+                Empowering skilled professionals. Manage your service requests, track your daily earnings, and maintain your expert profile.
              </p>
              <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-gray-100 shadow-sm w-fit">
                 <CircleIcon sx={{ fontSize: 10 }} className={isOnline ? 'text-emerald-500 animate-pulse' : 'text-gray-300'} />
@@ -140,7 +138,7 @@ const WorkerFooter = () => {
         {/* Bottom Credits */}
         <div className="pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
            <p className="text-gray-300 font-bold text-[10px] uppercase tracking-widest">
-              © 2026 WorkConnect Partner Platform. Secured by Enterprise Gateway.
+              © 2026 WorkConnect Partner Platform. All Rights Reserved.
            </p>
            <div className="flex items-center gap-6">
               <span className="px-3 py-1 bg-gray-200 text-gray-500 rounded-lg text-[8px] font-black uppercase">Professional Tier: GOLD</span>

@@ -1,4 +1,4 @@
-# WorkConnect Backend 🚀
+# HireAgain Backend 🚀
 
 Professional FastAPI Backend for Service Marketplace.
 

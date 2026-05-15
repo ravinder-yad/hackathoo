@@ -139,7 +139,7 @@ const MyBookings = () => {
                     <ShoppingBagOutlinedIcon sx={{ fontSize: 56 }} />
                  </div>
                  <h2 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">The Archive is Empty</h2>
-                 <p className="text-gray-500 font-bold text-lg mb-12 max-w-sm mx-auto">Your journey with WorkConnect hasn't started yet. Let's find your first expert.</p>
+                 <p className="text-gray-500 font-bold text-lg mb-12 max-w-sm mx-auto">Your journey with HireAgain hasn't started yet. Let's find your first expert.</p>
                  <Link to="/services" className="inline-block px-14 py-6 bg-purple-600 text-white rounded-[2.5rem] font-black text-xl shadow-[0_25px_60px_rgba(124,58,237,0.3)] hover:bg-purple-700 transition-all active:scale-95">
                     Browse Luxury Services
                  </Link>

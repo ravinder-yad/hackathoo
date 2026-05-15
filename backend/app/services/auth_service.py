@@ -48,7 +48,7 @@ async def register_user(data: RegisterSchema, photo_path: str = None, id_proof_p
     token = create_access_token(data={"sub": data.email, "role": data.role})
     
     return {
-        "message": "Registration successful! Welcome to WorkConnect 🚀",
+        "message": "Registration successful! Welcome to HireAgain 🚀",
         "access_token": token,
         "token_type": "bearer",
         "role": data.role,

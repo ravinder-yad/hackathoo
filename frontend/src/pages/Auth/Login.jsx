@@ -48,10 +48,10 @@ const Login = () => {
       });
 
       const { access_token, ...userData } = response.data;
-      
+
       // Update Auth Context
       login({ ...userData, token: access_token });
-      
+
       toast.success(`Welcome back, ${userData.name}! 🚀`);
 
       // Auto Redirect based on role
@@ -72,9 +72,9 @@ const Login = () => {
     <div className="text-center">
       <h2 className="text-3xl font-black text-gray-900 mb-2">Welcome Back 👋</h2>
       <p className="text-gray-500 font-bold mb-10">Select your account type to login</p>
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <motion.div 
+        <motion.div
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => setRole('user')}
@@ -87,7 +87,7 @@ const Login = () => {
           <p className="text-gray-500 text-sm font-bold mt-2">Login as Customer</p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => setRole('worker')}
@@ -118,14 +118,14 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block text-sm font-black text-gray-700 mb-2">Email or Phone</label>
-          <input 
+          <input
             type="text" name="email" required
             placeholder="example@gmail.com"
             className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl outline-none focus:border-purple-600 transition-all font-medium"
             onChange={handleInputChange}
           />
         </div>
-        
+
         <div className="relative">
           <div className="flex justify-between items-center mb-2">
             <label className="block text-sm font-black text-gray-700">Password</label>
@@ -133,15 +133,15 @@ const Login = () => {
               Forgot Password?
             </Link>
           </div>
-          <input 
-            type={showPassword ? "text" : "password"} 
+          <input
+            type={showPassword ? "text" : "password"}
             name="password" required
             placeholder="Enter your password"
             maxLength={72}
             className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl outline-none focus:border-purple-600 transition-all font-medium"
             onChange={handleInputChange}
           />
-          <button 
+          <button
             type="button" onClick={() => setShowPassword(!showPassword)}
             className="absolute right-5 top-[46px] text-gray-400 hover:text-purple-600"
           >
@@ -150,7 +150,7 @@ const Login = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <input 
+          <input
             type="checkbox" name="rememberMe" id="rememberMe"
             className="w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
             onChange={handleInputChange}
@@ -158,7 +158,7 @@ const Login = () => {
           <label htmlFor="rememberMe" className="text-sm font-bold text-gray-500 cursor-pointer">Remember Me</label>
         </div>
 
-        <button 
+        <button
           type="submit" disabled={loading}
           className="w-full bg-purple-600 text-white py-4 rounded-2xl font-black text-lg hover:bg-purple-700 shadow-xl shadow-purple-600/20 transition-all active:scale-95 disabled:opacity-50"
         >
@@ -168,8 +168,8 @@ const Login = () => {
 
       <div className="mt-8 text-center">
         <div className="relative mb-8">
-           <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-100"></div></div>
-           <div className="relative flex justify-center text-xs uppercase font-black tracking-widest text-gray-400 bg-white px-4">OR</div>
+          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-100"></div></div>
+          <div className="relative flex justify-center text-xs uppercase font-black tracking-widest text-gray-400 bg-white px-4">OR</div>
         </div>
         <button className="flex items-center justify-center gap-3 w-full py-4 border border-gray-100 rounded-2xl hover:bg-gray-50 transition-all font-bold">
           <GoogleIcon className="text-red-500" /> Continue with Google
@@ -186,9 +186,8 @@ const Login = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 pt-32 pb-20">
       <div className="max-w-xl w-full">
         {/* Brand Logo */}
-        <Link to="/" className="flex items-center justify-center gap-2 mb-10">
-          <div className="w-10 h-10 bg-purple-600 rounded-xl"></div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tighter">WorkConnect</h1>
+        <Link to="/" className="flex items-center justify-center mb-10">
+          <img src="/logo.png" alt="HireAgain" className="h-16 w-auto object-contain" />
         </Link>
 
         {/* Form Card */}
