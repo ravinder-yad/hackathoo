@@ -188,7 +188,7 @@ const Login = () => {
         {/* Brand Logo */}
         <Link to="/" className="flex items-center justify-center gap-2 mb-10">
           <div className="w-10 h-10 bg-purple-600 rounded-xl"></div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tighter">WorkConnect</h1>
+          <h1 className="text-3xl font-black text-gray-900 tracking-tighter">HireAgain</h1>
         </Link>
 
         {/* Form Card */}

@@ -364,7 +364,7 @@ const UserSettings = () => {
              </div>
 
              <div className="mt-10 text-center">
-                <p className="text-gray-300 font-black text-[10px] uppercase tracking-widest">WorkConnect Version 2.4.0 • Secured by 256-bit Encryption</p>
+                <p className="text-gray-300 font-black text-[10px] uppercase tracking-widest">HireAgain Version 2.4.0 • Secured by 256-bit Encryption</p>
              </div>
           </div>
         </div>

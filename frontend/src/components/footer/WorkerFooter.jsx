@@ -140,7 +140,7 @@ const WorkerFooter = () => {
         {/* Bottom Credits */}
         <div className="pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
            <p className="text-gray-300 font-bold text-[10px] uppercase tracking-widest">
-              © 2026 WorkConnect Partner Platform. Secured by Enterprise Gateway.
+              © 2026 HireAgain Partner Platform. Secured by Enterprise Gateway.
            </p>
            <div className="flex items-center gap-6">
               <span className="px-3 py-1 bg-gray-200 text-gray-500 rounded-lg text-[8px] font-black uppercase">Professional Tier: GOLD</span>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -17,6 +17,7 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import axios from 'axios';
+import logoImage from '../../assets/hire-again.png';
 import { toast } from 'react-hot-toast';
 
 const Navbar = () => {
@@ -26,6 +27,8 @@ const Navbar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
    const [isOnline, setIsOnline] = useState(true);
    const [notifications, setNotifications] = useState([]);
+   const [isAccountOpen, setIsAccountOpen] = useState(false);
+   const accountRef = useRef(null);
  
    useEffect(() => {
      if (isAuthenticated) {
@@ -64,7 +67,7 @@ const Navbar = () => {
          is_online: newStatus
        });
        setIsOnline(newStatus);
-       toast.success(newStatus ? "Online! 🟢" : "Offline 🔴");
+       toast.success(newStatus ? "Online! ðŸŸ¢" : "Offline ðŸ”´");
      } catch (error) {
        toast.error("Failed to update status");
      }
@@ -75,17 +78,24 @@ const Navbar = () => {
      navigate('/login');
      setIsMobileMenuOpen(false);
    };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (accountRef.current && !accountRef.current.contains(event.target)) {
+        setIsAccountOpen(false);
+      }
+    };
 
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
   return (
-    <nav className="fixed top-0 w-full bg-white shadow-md border-b z-[1000] px-4 md:px-8 py-5">
-      <div className="max-w-[1536px] mx-auto flex items-center justify-between gap-4">
+    <nav className="fixed top-0 w-full bg-white shadow-md border-b z-[1000] px-4 md:px-8 py-2 md:py-3">
+      <div className="max-w-[1536px] mx-auto flex items-center justify-between gap-4 min-h-[64px]">
         
         {/* 1. Logo Section (Left) */}
         <div className="flex items-center gap-4 shrink-0">
           <Link to="/" className="shrink-0">
-            <h1 className="text-2xl font-black text-purple-600 tracking-tighter">
-              WorkConnect
-            </h1>
+            <img src={logoImage} alt="HireAgain logo" className="w-24 h-24 md:w-28 md:h-28 object-contain rounded-2xl" />
           </Link>
         </div>
 
@@ -128,7 +138,7 @@ const Navbar = () => {
               </div>
 
               <Link to="/emergency" className="bg-red-500 text-white px-5 py-2.5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg shadow-red-500/25 flex items-center gap-1">
-                Emergency 🚨
+                Emergency ðŸš¨
               </Link>
 
               {isAuthenticated ? (
@@ -193,9 +203,14 @@ const Navbar = () => {
               </Link>
 
               {/* Profile Dropdown */}
-              <div className="relative group">
-                <div className="flex items-center gap-2 p-1 pl-3 pr-2 border border-gray-100 rounded-2xl cursor-pointer hover:border-purple-600 hover:bg-gray-50 transition-all group-hover:bg-purple-50 group-hover:border-purple-600">
-                  <div className="flex flex-col items-end hidden lg:flex">
+              <div className="relative" ref={accountRef}>
+                <button
+                  type="button"
+                  onClick={() => setIsAccountOpen((prev) => !prev)}
+                  className="flex items-center gap-2 p-1 pl-3 pr-2 border border-gray-100 rounded-2xl cursor-pointer hover:border-purple-600 hover:bg-gray-50 transition-all"
+                  aria-expanded={isAccountOpen}
+                >
+                  <div className="hidden lg:flex flex-col items-end">
                     <span className="text-xs font-black text-gray-900 leading-none mb-0.5">{user?.name || 'User'}</span>
                     <span className="text-[10px] font-bold text-gray-400 capitalize tracking-wider leading-none">{user?.role}</span>
                   </div>
@@ -206,11 +221,14 @@ const Navbar = () => {
                       <span className="font-black text-lg">{user?.name?.[0] || 'U'}</span>
                     )}
                   </div>
-                  <KeyboardArrowDownIcon className="text-gray-400 group-hover:text-purple-600 transition-transform group-hover:rotate-180" fontSize="small" />
-                </div>
+                  <KeyboardArrowDownIcon
+                    className={`text-gray-400 transition-transform ${isAccountOpen ? 'rotate-180 text-purple-600' : ''}`}
+                    fontSize="small"
+                  />
+                </button>
 
                 {/* Dropdown Menu */}
-                <div className="absolute right-0 top-full mt-3 w-64 bg-white shadow-[0_25px_60px_rgba(0,0,0,0.15)] rounded-[2rem] border border-gray-50 py-4 hidden group-hover:block z-50 overflow-hidden transform-gpu animate-in fade-in slide-in-from-top-4 duration-300">
+                <div className={`absolute right-0 top-full mt-3 w-64 bg-white shadow-[0_25px_60px_rgba(0,0,0,0.15)] rounded-[2rem] border border-gray-50 py-4 z-50 overflow-hidden transform-gpu ${isAccountOpen ? 'block' : 'hidden'} animate-in fade-in slide-in-from-top-4 duration-300`}>
                    {/* Dropdown Header */}
                    <div className="px-6 py-4 bg-gray-50/50 mb-2">
                       <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-1">Account</p>
@@ -281,7 +299,7 @@ const Navbar = () => {
             className="md:hidden bg-white border-t mt-4 overflow-hidden pt-4 pb-8 flex flex-col gap-2 px-2"
           >
              <Link to="/services" className="text-gray-900 font-bold px-4 py-3 hover:bg-gray-50 rounded-xl">All Services</Link>
-             <Link to="/emergency" className="text-red-500 font-black px-4 py-3 hover:bg-red-50 rounded-xl">Emergency 🚨</Link>
+             <Link to="/emergency" className="text-red-500 font-black px-4 py-3 hover:bg-red-50 rounded-xl">Emergency ðŸš¨</Link>
              <hr className="my-2 border-gray-50" />
              {!isAuthenticated ? (
                <>
@@ -306,3 +324,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+

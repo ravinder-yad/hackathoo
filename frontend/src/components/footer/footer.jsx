@@ -18,7 +18,7 @@ const Footer = () => {
           {/* 1. Brand Section */}
           <div className="space-y-8">
              <Link to="/">
-                <h2 className="text-3xl font-black text-purple-600 tracking-tighter">WorkConnect</h2>
+                <h2 className="text-3xl font-black text-purple-600 tracking-tighter">HireAgain</h2>
              </Link>
              <p className="text-gray-500 font-bold leading-relaxed text-sm">
                 Connecting you with trusted local experts instantly. Fast, reliable, and premium service delivery for the modern home.
@@ -100,7 +100,7 @@ const Footer = () => {
               </div>
               <div>
                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Email Assistance</p>
-                 <p className="text-lg font-black text-gray-900">support@workconnect.com</p>
+                 <p className="text-lg font-black text-gray-900">support@hireagain.com</p>
               </div>
            </div>
            <div className="flex items-center gap-6">
@@ -117,7 +117,7 @@ const Footer = () => {
         {/* Bottom Credits */}
         <div className="pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
            <p className="text-gray-400 font-bold text-xs uppercase tracking-widest">
-              © 2026 WorkConnect Marketplace. All Rights Reserved.
+              © 2026 HireAgain Marketplace. All Rights Reserved.
            </p>
            <div className="flex items-center gap-8">
               <p className="text-gray-300 font-black text-[10px] uppercase tracking-[0.2em]">Designed with ❤️ in India</p>

@@ -119,7 +119,7 @@ const Register = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
         <div className="max-w-xl w-full">
            <h1 className="text-4xl font-black text-gray-900 text-center mb-4 tracking-tighter">Choose Your Path</h1>
-           <p className="text-gray-500 text-center mb-12 font-bold">How do you want to use WorkConnect?</p>
+           <p className="text-gray-500 text-center mb-12 font-bold">How do you want to use HireAgain?</p>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <motion.div 
@@ -157,7 +157,7 @@ const Register = () => {
         {/* Brand Logo */}
         <Link to="/" className="flex items-center justify-center gap-2 mb-10">
           <div className="w-10 h-10 bg-purple-600 rounded-xl shadow-lg shadow-purple-500/20"></div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tighter">WorkConnect</h1>
+          <h1 className="text-3xl font-black text-gray-900 tracking-tighter">HireAgain</h1>
         </Link>
 
         {/* Form Sections */}
@@ -171,7 +171,7 @@ const Register = () => {
               className="bg-white p-10 rounded-[3rem] shadow-xl border border-gray-50"
             >
                <h2 className="text-3xl font-black text-gray-900 mb-2">Create Account</h2>
-               <p className="text-gray-500 font-bold mb-8">Join the WorkConnect community</p>
+               <p className="text-gray-500 font-bold mb-8">Join the HireAgain community</p>
                
                <div className="space-y-4 mb-8">
                   <div className="relative">
