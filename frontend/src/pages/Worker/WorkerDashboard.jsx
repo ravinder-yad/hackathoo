@@ -31,8 +31,8 @@ const WorkerDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [showNewRequest, setShowNewRequest] = useState(true);
 
-  useEffect(() => {
-    if (user?.email) {
+   useEffect(() => {
+    if (user?.email && user?.role === 'worker') {
       fetchDashboardData();
     }
   }, [user]);

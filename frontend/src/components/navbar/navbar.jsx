@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import logo from "../../assets/logo.png"
@@ -197,7 +197,7 @@ const Navbar = () => {
 
               {/* Profile Dropdown */}
               <div className="relative">
-                <div 
+                <div
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                   className={`flex items-center gap-2 p-1 pl-3 pr-2 border rounded-2xl cursor-pointer transition-all ${isProfileOpen ? 'border-purple-600 bg-purple-50' : 'border-gray-100 hover:border-purple-600 hover:bg-gray-50'}`}
                 >
@@ -212,16 +212,16 @@ const Navbar = () => {
                       <span className="font-black text-lg">{user?.name?.[0] || 'U'}</span>
                     )}
                   </div>
-                  <KeyboardArrowDownIcon 
-                    className={`text-gray-400 transition-transform duration-300 ${isProfileOpen ? 'rotate-180 text-purple-600' : ''}`} 
-                    fontSize="small" 
+                  <KeyboardArrowDownIcon
+                    className={`text-gray-400 transition-transform duration-300 ${isProfileOpen ? 'rotate-180 text-purple-600' : ''}`}
+                    fontSize="small"
                   />
                 </div>
 
                 {/* Dropdown Menu */}
                 <AnimatePresence>
                   {isProfileOpen && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: 15, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 15, scale: 0.95 }}
@@ -234,8 +234,8 @@ const Navbar = () => {
                         <p className="text-[11px] font-bold text-gray-500 truncate">{user?.email || 'ravi@example.com'}</p>
                       </div>
 
-                      <Link 
-                        to="/profile" 
+                      <Link
+                        to="/profile"
                         onClick={() => setIsProfileOpen(false)}
                         className="flex items-center gap-3 px-6 py-3 hover:bg-purple-50 text-gray-700 hover:text-purple-600 transition-colors group/item"
                       >

@@ -13,8 +13,8 @@ const WorkerEarnings = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (user?.email) {
+   useEffect(() => {
+    if (user?.email && user?.role === 'worker') {
       fetchEarnings();
     }
   }, [user]);
